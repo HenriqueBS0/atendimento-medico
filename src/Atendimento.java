@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Atendimento extends Operacao {
     private Paciente paciente;
@@ -18,37 +17,25 @@ public class Atendimento extends Operacao {
 
     private Estado estado;
     
-    public Atendimento(Paciente paciente) {
+    public Atendimento(Paciente paciente, ArrayList<Boolean> respostas) {
         super(new Date());
         this.paciente = paciente;
         estado = Estado.ESPERANDO_TRIAGEM;
-        this.calculaPrioridade(getRespostaPrioridade());
-        estado = Estado.EM_TRIAGEM;
+        this.calculaPrioridade(respostas);
+        this.estado = Estado.ESPERANDO_CONSULTA;
     }
 
-    private ArrayList<Boolean> getRespostaPrioridade() {
-        ArrayList<Boolean> respostas = new ArrayList<Boolean>();
+    public static ArrayList<String> getPerguntas() {
 
-        Scanner entrada = new Scanner(System.in);
+        ArrayList<String> perguntas = new ArrayList<String>();
 
-        System.out.print("Inconciente? (S/N): ");
-        respostas.add(entrada.nextLine().equals("S"));
+        perguntas.add("Inconciente? (S/N): ");
+        perguntas.add("Dificuldade para respirar? (S/N): ");
+        perguntas.add("Vomita? (S/N): ");
+        perguntas.add("Inchada? (S/N): ");
+        perguntas.add("Sente dor? (S/N): ");
 
-        System.out.print("Dificuldade para respirar? (S/N): ");
-        respostas.add(entrada.nextLine().equals("S"));
-
-        System.out.print("Vomita? (S/N): ");
-        respostas.add(entrada.nextLine().equals("S"));
-
-        System.out.print("Inchada? (S/N): ");
-        respostas.add(entrada.nextLine().equals("S"));
-
-        System.out.print("Sente dor? (S/N): ");
-        respostas.add(entrada.nextLine().equals("S"));
-
-        entrada.close();
-
-        return respostas;
+        return perguntas;
     }
 
     public void calculaPrioridade(ArrayList<Boolean> respostas) {
@@ -62,7 +49,9 @@ public class Atendimento extends Operacao {
     }
 
     public void consulta(Medico medico) {
+        this.estado = Estado.EM_CONSULTA;
         this.medico = medico;
+        this.estado = Estado.ATENDIDO;
     }
 
     public int getPrioridade() {
@@ -78,7 +67,7 @@ public class Atendimento extends Operacao {
             case ESPERANDO_CONSULTA:
                 return "Esperando Consulta";
             case EM_CONSULTA:
-                return "Esperando Consulta";
+                return "Em Consulta";
             case ATENDIDO:
                 return "Atendido";
         }

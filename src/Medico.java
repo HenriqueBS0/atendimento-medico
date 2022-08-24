@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Medico extends Pessoa {
-    private ArrayList<Especialidade> especialidades;
+    private ArrayList<Especialidade> especialidades = new ArrayList<Especialidade>();
     
     public Medico(String dataNascimento, String nome) {
         super(dataNascimento, nome);

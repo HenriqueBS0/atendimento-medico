@@ -1,5 +1,4 @@
-import java.sql.Date;
-
+import java.util.Date;
 public class Atestado extends Operacao {
     private int cid;
 
@@ -9,12 +8,15 @@ public class Atestado extends Operacao {
         this.cid = cid;
     }
 
-    public void emitir(Atendimento atendimento) {
-        System.out.println("-----{Atestado}-------");
-        System.out.println("Paciente: " + atendimento.getPaciente().getNome());
-        System.out.println("Médico: " + atendimento.getMedico().getNome());
-        System.out.println("Data Inicial: " + UtilsDate.dateToString(inicio));
-        System.out.println("Data Final: " + UtilsDate.dateToString(fim));
-        System.out.println("Cid: " + cid);
+    public String emitir(Atendimento atendimento) {
+        String conteudo = "-----{Atestado}-------";
+        
+        conteudo.concat(String.format("\nPaciente: %s", atendimento.getPaciente().getNome()));
+        conteudo.concat(String.format("\nMédico: %s", atendimento.getMedico().getNome()));
+        conteudo.concat(String.format("\nData Inicial: %s", UtilsDate.dateToString(inicio)));
+        conteudo.concat(String.format("\nData Final: %s", UtilsDate.dateToString(fim)));
+        conteudo.concat(String.format("\nCID: %d", cid));
+
+        return conteudo;
     }
 }
