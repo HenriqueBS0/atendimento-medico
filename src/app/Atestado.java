@@ -1,3 +1,4 @@
+package app;
 import java.util.Date;
 public class Atestado extends Operacao {
     private int cid;

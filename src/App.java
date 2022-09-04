@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import app.Atendimento;
+import app.Atestado;
+import app.Especialidade;
+import app.ListaAntedimento;
+import app.Medico;
+import app.Paciente;
+import app.UtilsDate;
+
 public class App {
 
     private static Scanner entrada = new Scanner(System.in);
@@ -128,7 +136,7 @@ public class App {
     }
 
     public static Medico getMedico() {
-        System.out.println("-----{Especialidades}------");
+        System.out.println("-----{Médicos}------");
         for (int i = 0; i < medicos.size(); i++) {
             System.out.println((i + 1) + " - " + medicos.get(i).getNome());
         }

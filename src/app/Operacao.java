@@ -1,3 +1,4 @@
+package app;
 import java.util.Date;
 
 abstract public class Operacao {
@@ -14,8 +15,6 @@ abstract public class Operacao {
     }
 
     public String tempoTotal() {
-        if(fim == null) return "Nenhuma data de fim foi setada";
-
         return UtilsDate.diferencaDatas(inicio, fim);
     }
 }

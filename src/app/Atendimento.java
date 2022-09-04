@@ -1,3 +1,4 @@
+package app;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,22 +8,14 @@ public class Atendimento extends Operacao {
 
     private int prioridade;
 
-    enum Estado {
-        ESPERANDO_TRIAGEM,
-        EM_TRIAGEM,
-        ESPERANDO_CONSULTA,
-        EM_CONSULTA,
-        ATENDIDO
-    }
-
-    private Estado estado;
+    private EstadoAtendimento estado;
     
     public Atendimento(Paciente paciente, ArrayList<Boolean> respostas) {
         super(new Date());
         this.paciente = paciente;
-        estado = Estado.ESPERANDO_TRIAGEM;
+        estado = EstadoAtendimento.ESPERANDO_TRIAGEM;
         this.calculaPrioridade(respostas);
-        this.estado = Estado.ESPERANDO_CONSULTA;
+        this.estado = EstadoAtendimento.ESPERANDO_CONSULTA;
     }
 
     public static ArrayList<String> getPerguntas() {
@@ -39,7 +32,7 @@ public class Atendimento extends Operacao {
     }
 
     public void calculaPrioridade(ArrayList<Boolean> respostas) {
-        this.estado = Estado.EM_TRIAGEM;
+        this.estado = EstadoAtendimento.EM_TRIAGEM;
 
         for (Boolean resposta : respostas) {
             if(resposta) {
@@ -49,9 +42,9 @@ public class Atendimento extends Operacao {
     }
 
     public void consulta(Medico medico) {
-        this.estado = Estado.EM_CONSULTA;
+        this.estado = EstadoAtendimento.EM_CONSULTA;
         this.medico = medico;
-        this.estado = Estado.ATENDIDO;
+        this.estado = EstadoAtendimento.ATENDIDO;
     }
 
     public int getPrioridade() {
