@@ -1,12 +1,18 @@
 package app;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import idiomas.Mensagem;
+
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
 public class UtilsDate {
+    
+    public static Mensagem mensagem;
+
     public static Date stringToDate(String data) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         try {
@@ -32,6 +38,6 @@ public class UtilsDate {
 		final long horas = TimeUnit.MILLISECONDS.toHours(milliseconds) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(milliseconds));
 		final long minutos = TimeUnit.MILLISECONDS.toMinutes(milliseconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(milliseconds));
 
-		return String.format("%d Dias %d Horas %d Minutos", dias, horas, minutos);
+		return String.format(mensagem.getModeloDiferencaDatas(), dias, horas, minutos);
     }
 }

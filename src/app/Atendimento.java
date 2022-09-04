@@ -18,19 +18,6 @@ public class Atendimento extends Operacao {
         this.estado = EstadoAtendimento.ESPERANDO_CONSULTA;
     }
 
-    public static ArrayList<String> getPerguntas() {
-
-        ArrayList<String> perguntas = new ArrayList<String>();
-
-        perguntas.add("Inconciente? (S/N): ");
-        perguntas.add("Dificuldade para respirar? (S/N): ");
-        perguntas.add("Vomita? (S/N): ");
-        perguntas.add("Inchada? (S/N): ");
-        perguntas.add("Sente dor? (S/N): ");
-
-        return perguntas;
-    }
-
     public void calculaPrioridade(ArrayList<Boolean> respostas) {
         this.estado = EstadoAtendimento.EM_TRIAGEM;
 
@@ -51,21 +38,8 @@ public class Atendimento extends Operacao {
         return prioridade;
     }
 
-    public String getEstado() {
-        switch (estado) {
-            case ESPERANDO_TRIAGEM:
-                return "Esperando Triagem";
-            case EM_TRIAGEM:
-                return "Em Triagem";
-            case ESPERANDO_CONSULTA:
-                return "Esperando Consulta";
-            case EM_CONSULTA:
-                return "Em Consulta";
-            case ATENDIDO:
-                return "Atendido";
-        }
-
-        return "";
+    public EstadoAtendimento getEstado() {
+        return estado;
     }
 
     public Medico getMedico() {

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import app.EstadoAtendimento;
 
 public interface Mensagem {
+    public String getNomeIdioma();
+    public String getCabecalhoCadastroEspecialidades();
+    public String getCabecalhoCadastroMedicos();
     public ArrayList<String> getPerguntasAtendimento();
     public String getEstado(EstadoAtendimento estado);
     public String getModeloAtestado();
@@ -13,6 +16,7 @@ public interface Mensagem {
     public String getContinuarCadastro();
     public String getCaracterConfirmacao();
     public String getInformarDataNascimento();
+    public String getInformeNome();
     public String getCabecalhoEspecialidades();
     public String getInformeEspecialdiadeMedico();
     public String menu();
@@ -25,5 +29,5 @@ public interface Mensagem {
     public String getInformeDataFinal();
     public String getCabecalhoMedicos();
     public String getInformeMedico();
-    public String continuas();
+    public String continuar();
 } 

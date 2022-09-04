@@ -1,6 +1,11 @@
 package app;
 import java.util.Date;
+
+import idiomas.Mensagem;
 public class Atestado extends Operacao {
+
+    public static Mensagem mensagem;
+    
     private int cid;
 
     public Atestado(int cid, Date dataInicio, Date dataFim) {
@@ -10,14 +15,14 @@ public class Atestado extends Operacao {
     }
 
     public String emitir(Atendimento atendimento) {
-        String conteudo = "-----{Atestado}-------";
-        
-        conteudo.concat(String.format("\nPaciente: %s", atendimento.getPaciente().getNome()));
-        conteudo.concat(String.format("\nMédico: %s", atendimento.getMedico().getNome()));
-        conteudo.concat(String.format("\nData Inicial: %s", UtilsDate.dateToString(inicio)));
-        conteudo.concat(String.format("\nData Final: %s", UtilsDate.dateToString(fim)));
-        conteudo.concat(String.format("\nCID: %d", cid));
 
-        return conteudo;
+        return String.format(
+            mensagem.getModeloAtestado(), 
+            atendimento.getPaciente().getNome(),
+            atendimento.getMedico().getNome(),
+            UtilsDate.dateToString(inicio),
+            UtilsDate.dateToString(fim),
+            cid
+        );
     }
 }
